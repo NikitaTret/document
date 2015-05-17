@@ -28,4 +28,3 @@ varargout {1} = handles.output;
 
 Обратная% pushbutton5. Функция pushbutton5_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); х = INV (А); комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)
 
-% Возведение в квадрат А pushbutton6. Функция pushbutton6_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); х = ^ 2; комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)

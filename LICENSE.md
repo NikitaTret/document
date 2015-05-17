@@ -1,30 +1,108 @@
-Функция varargout = Никита (varargin) gui_Singleton = 1; gui_State = структура («gui_Name", mfilename, ... gui_Singleton ", gui_Singleton, ... gui_OpeningFcn",Nikita_OpeningFcn, ... gui_OutputFcn ",Nikita_OutputFcn, ... gui_LayoutFcn", [],. .. "gui_Callback", []); если Наргин && ischar (varargin {1}) = gui_State.gui_Callback str2func (varargin {1}); конец
+function varargout = Nikita(varargin)
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @Nikita_OpeningFcn, ...
+                   'gui_OutputFcn',  @Nikita_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
 
-если nargout [varargout {1: nargout}] = gui_mainfcn (gui_State, varargin {:}); еще gui_mainfcn (gui_State, varargin {:}); конец функции Nikita_OpeningFcn (hObject, данныеСобытия, ручки, varargin) handles.output = hObject; guidata (hObject, ручки);
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+function Nikita_OpeningFcn(hObject, eventdata, handles, varargin)
+handles.output = hObject;
+guidata(hObject, handles);
 
-Функция varargout = Nikita_OutputFcn (hObject, данныеСобытия, ручки)
+function varargout = Nikita_OutputFcn(hObject, eventdata, handles) 
 
-varargout {1} = handles.output;
+varargout{1} = handles.output;
 
-% Программирование выпадающего меню для первой матрицы,% определение количества строк. Функция popupmenu1_Callback (hObject, данныеСобытия, ручки) комплект (handles.uitable1 "Видимый", "на"); п = Get (hObject, 'значение'); Dat = нули (N + 1, N + 1); = TRUE (1, N + 2); комплект (handles.uitable1, «Данные», Дат "ColumnEditable",)
+%Программирование выпадающего меню для первой матрицы, 
+%определение количества строк.
+function popupmenu1_Callback(hObject, eventdata, handles)
+set(handles.uitable1, 'Visible' ,'on');
+n=get(hObject,'Value');
+Dat=zeros(n+1,n+1);
+A=true(1,n+2);
+set(handles.uitable1,'Data',Dat,'ColumnEditable',A)
 
-функционировать popupmenu1_CreateFcn (hObject, данныеСобытия, ручки)
 
-если МНПК && IsEqual (получить (hObject "BackgroundColor '), получим (0,' defaultUicontrolBackgroundColor ')) установлен (hObject" BackgroundColor "," белый "); конец
 
-% Определение количества столбцов для второй матрицы. Функция popupmenu3_Callback (hObject2, данныеСобытия, ручки) комплект (handles.uitable2 "Видимый", "на"); м = Get (hObject2, 'Значение'); Dat2 = нули (т + 1, т + 1); B = TRUE (1, М + 2); комплект (handles.uitable2, «Данные», dat2 "ColumnEditable ', В)
 
-функционировать popupmenu3_CreateFcn (hObject2, данныеСобытия, ручки)
+function popupmenu1_CreateFcn(hObject, eventdata, handles)
 
-если МНПК && IsEqual (получить (hObject2 "BackgroundColor '), получим (0,' defaultUicontrolBackgroundColor ')) установлен (hObject" BackgroundColor "," белый "); конец
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 
-Произведение% функция pushbutton1_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); B = получить (handles.uitable2, «Данные»); х = * B; комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)
 
-Сложение% pushbutton2. Функция pushbutton2_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); B = получить (handles.uitable2, «Данные»); х = A + B; комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)
+%Определение количества столбцов для второй матрицы.
+function popupmenu3_Callback(hObject2, eventdata, handles)
+set(handles.uitable2, 'Visible' ,'on');
+m=get(hObject2,'Value');
+Dat2=zeros(m+1,m+1);
+B=true(1,m+2);
+set(handles.uitable2,'Data',Dat2,'ColumnEditable',B)
 
-Вычитание% pushbutton3. Функция pushbutton3_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); B = получить (handles.uitable2, «Данные»); х = АВ; комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)
+function popupmenu3_CreateFcn(hObject2, eventdata, handles)
 
-Транспонирование% в pushbutton4. Функция pushbutton4_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); х = '. комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)
+if ispc && isequal(get(hObject2,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 
-Обратная% pushbutton5. Функция pushbutton5_Callback (hObject, данныеСобытия, ручки)% п = получить (handles.popupmenu1, 'значение'); = Получить (handles.uitable1, «Данные»); х = INV (А); комплект (handles.text4, 'Строка', num2str (х), «Видимый», «О»)
+% Произведение
+function pushbutton1_Callback(hObject, eventdata, handles)
+%n=get(handles.popupmenu1,'Value');
+A=get(handles.uitable1,'Data');
+B=get(handles.uitable2,'Data');
+x=A*B;
+set(handles.text4,'String',num2str(x), 'Visible', 'On')
+
+
+% Сложение pushbutton2.
+function pushbutton2_Callback(hObject, eventdata, handles)
+%n=get(handles.popupmenu1,'Value');
+A=get(handles.uitable1,'Data');
+B=get(handles.uitable2,'Data');
+x=A+B;
+set(handles.text4,'String',num2str(x), 'Visible', 'On')
+
+
+% Вычитание pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+%n=get(handles.popupmenu1,'Value');
+A=get(handles.uitable1,'Data');
+B=get(handles.uitable2,'Data');
+x=A-B;
+set(handles.text4,'String',num2str(x), 'Visible', 'On')
+
+
+% Транспонирование A in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+%n=get(handles.popupmenu1,'Value');
+A=get(handles.uitable1,'Data');
+x=A.';
+set(handles.text4,'String',num2str(x),'Visible', 'On')
+
+
+% Обратная A pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+%n=get(handles.popupmenu1,'Value');
+A=get(handles.uitable1,'Data');
+x=inv(A);
+set(handles.text4,'String',num2str(x),'Visible', 'On')
+
+
+% Возведение в квадрат А pushbutton6.
+function pushbutton6_Callback(hObject, eventdata, handles)
+%n=get(handles.popupmenu1,'Value');
+A=get(handles.uitable1,'Data');
+x=A.^2;
+set(handles.text4,'String',num2str(x),'Visible', 'On')
 
